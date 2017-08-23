@@ -16,11 +16,12 @@ This file test iset64 object
 All includes here
 -----------------------------------------------------------------*/
 #include "iset64.h"
+#include "vld.h"
 
 /*----------------------------------------------------------------
 test a set
 -----------------------------------------------------------------*/
-#if 0
+
 void test_basic() {
 	iset64 a;
 	cout << "a = " << a << endl;
@@ -36,6 +37,7 @@ void test_basic() {
 	cout << "set b = " << b << endl;
 	b = b - 3;
 	cout << "set b after removing 3 = " << b << endl;
+
 	b = b - 3;
 	cout << "set b after removing 3 = " << b << endl;
 	b = b - 10;
@@ -47,7 +49,10 @@ void test_basic() {
 	b = b + 10;
 	b = b + 2;
 	cout << "set b after adding {10,2} = " << b << endl;
+
 }
+
+#if 0
 
 /*----------------------------------------------------------------
 test union
@@ -553,11 +558,14 @@ void test_demorgan_laws() {
 
 }
 
+#endif // 0
+
 /*----------------------------------------------------------------
 test bed
 -----------------------------------------------------------------*/
 void testbed() {
 	test_basic();
+	/*
 	test_union();
 	test_difference();
 	test_intersection();
@@ -567,27 +575,61 @@ void testbed() {
 	test_conversion_operator();
 	test_not_operator();
 	test_demorgan_laws();
+	*/
 }
 
-#endif // 0
+
 
 /*----------------------------------------------------------------
 main
 -----------------------------------------------------------------*/
 int main() {
-	//testbed();
-
+	testbed();
+	
 	iset64 a;
+	a += 1;
+	a += 2;
+	iset64 b;
+	b += 1;
+	b += 2;
+	b += 3;
+	cout << "Set a " << a << endl;
+	cout << "Set b " << b << endl;
+	iset64 c = a + b;
+
+	cout << c << endl;
+
+	/*
+	//iset64 a;
+	//cout << a << endl;
+
+	//a = a + 5;
+
+	//a = a + 50;
+
+	//a += 63;
+
+
+	int x[] = { 1, 3, 6 };
+	
+
+	iset64 a(x, sizeof(x)/sizeof(int));
+
 	cout << a << endl;
 
-	a += 5;
+	a = a - 6;
 
-	a += 50;
+	//a = a - 3;
+
+	//a = a - 3;
+
+	//a = a - 5;
 
 	//iset64 b = a;
 
 	cout << a << endl;
 	//cout << b << endl;
+	*/
 
 	return 0;
 }
