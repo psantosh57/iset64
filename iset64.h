@@ -38,9 +38,7 @@ public:
 
 	iset64(const iset64& rhs) {
 
-		cout << "In copy constructor" << endl;
-
-		free();
+		cout << "In copy constructor" << endl;		
 
 		_numElements = rhs._numElements;
 
@@ -77,21 +75,34 @@ public:
 
 		iset64 sum;
 
-		sum._numElements = lhs._numElements + rhs._numElements;
+		int numCommonElements = rhs.getNumCommonElements(lhs);
+
+		sum._numElements = lhs._numElements + rhs._numElements - numCommonElements;
 
 		sum.allocate(sum._numElements);
 
 		int i = 0;
+		int j = 0;
+		int k = 0;
 
-		for (i = 0; i < lhs._numElements; ++i) {
+		while (j < lhs._numElements) {
 
-			sum._set[i] = lhs._set[i];
-			 
+			if (!rhs.isPresent(lhs._set[i])) {
+
+				sum._set[i] = lhs._set[j];
+				i++;
+
+			}
+
+			j++;
+
 		}
 
-		for (i = lhs._numElements; i < sum._numElements; ++i) {
+		while (k < rhs._numElements) {
 
-			sum._set[i] = rhs._set[i-lhs._numElements];
+			sum._set[i] = rhs._set[k];
+			i++;
+			k++;
 
 		}
 
@@ -99,44 +110,60 @@ public:
 
 	}
 
-	iset64& operator+(int n) {
+	friend iset64 operator+(const iset64& lhs, const int n) {
 
-		cout << "In operator+" << endl;
+		if (!lhs.isPresent(n)) {
 
-		if (!isPresent(n)) {
+			cout << "In operator+" << endl;
 
-			if (_set) {
+			iset64 temp;
 
-				iset64 temp = *this;
+			temp._numElements = lhs._numElements + 1;
 
-				free();
+			temp.allocate(temp._numElements);
 
-				_numElements++;
+			temp.copy(lhs);
 
-				allocate(_numElements);
+			temp._set[temp._numElements - 1] = n;
 
-				int i = 0;
-				for (i = 0; i < (_numElements-1); ++i) {
+			return temp;
 
-					_set[i] = temp._set[i];
-				}
+		}
+		else {
 
-				_set[i] = n;
-
-			}
-			else {
-
-				_numElements++;
-
-				allocate(_numElements);
-
-				_set[0] = n;
-
-			}
+			cout << n << " is already present in the set" << endl;
+			return lhs;
 
 		}
 
-		return *this;
+	}
+
+	friend iset64 operator+(const int n, const iset64& rhs) {
+
+		if (!rhs.isPresent(n)) {
+
+			cout << "In operator+" << endl;
+
+			iset64 temp;
+
+			temp._numElements = rhs._numElements + 1;
+
+			temp.allocate(temp._numElements);
+
+			temp.copy(rhs);
+
+			temp._set[temp._numElements - 1] = n;
+
+			return temp;
+
+		}
+		else {
+
+			cout << n << " is already present in the set" << endl;
+
+			return rhs;
+
+		}		
 
 	}
 
@@ -181,51 +208,37 @@ public:
 
 	}
 
-	iset64& operator-(int n) {
+	friend iset64 operator-(const iset64& lhs, int n) {
 
 		cout << "In operator-" << endl;
 
-		if (_numElements) {
+		iset64 temp;
 
-			if (isPresent(n)) {
+		if (lhs._numElements) {
 
-				iset64 temp = *this;
-				
-				free();
+			if (lhs.isPresent(n)) {
 
-				_numElements--;
+				temp._numElements = lhs._numElements - 1;
 
-				allocate(_numElements);
+				temp.allocate(temp._numElements);
 
-				for (int i = 0, j = 0; i < _numElements, j < temp._numElements;) {
+				temp.remove(n, lhs);
 
-					if (temp._set[j] != n) {
-
-						_set[i] = temp._set[j];
-						i++;
-						j++;
-					}
-					else {
-
-						j++;
-
-					}
-				}
-
+				return temp;
 
 			}
 			else {
 
 				cout << "Element not present in set" << endl;
+				return lhs;
 			}
 
 		}
 		else {
 
-			cout << "Set is empty" << endl;
+			cout << "Cannot remove from empty set" << endl;
+			return lhs;
 		}
-
-		return *this;
 
 	}
 
@@ -253,7 +266,10 @@ public:
 
 	}
 
-	bool isPresent(int n);
+	bool isPresent(int n) const;
+	int getNumCommonElements(const iset64& lhs) const;
+	void copy(const iset64& lhs);
+	void remove(int n, const iset64& a);
 	//void sort();
 
 

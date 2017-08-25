@@ -586,20 +586,26 @@ main
 int main() {
 	testbed();
 	
-	iset64 a;
-	a += 1;
-	a += 2;
-	iset64 b;
-	b += 1;
-	b += 2;
-	b += 3;
-	cout << "Set a " << a << endl;
-	cout << "Set b " << b << endl;
-	iset64 c = a + b;
-
-	cout << c << endl;
+	
+	//a.getNumCommonElements(b);
 
 	/*
+
+	iset64 a;
+
+	a = a + 5;
+
+	a = 10 + a;
+	a = a + 20;
+	a = a + 25;
+
+	a += 15;
+
+	a = a - 5;
+	a = a - 15;
+
+	cout << a << endl;
+
 	//iset64 a;
 	//cout << a << endl;
 
