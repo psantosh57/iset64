@@ -81,28 +81,28 @@ public:
 
 		sum.allocate(sum._numElements);
 
-		int i = 0;
-		int j = 0;
-		int k = 0;
+		int rhsInd = 0;
+		int lhsInd = 0;
+		int sumInd = 0;
 
-		while (j < lhs._numElements) {
+		while (lhsInd < lhs._numElements) {
 
-			if (!rhs.isPresent(lhs._set[i])) {
+			if (!rhs.isPresent(lhs._set[lhsInd])) {
 
-				sum._set[i] = lhs._set[j];
-				i++;
+				sum._set[sumInd] = lhs._set[lhsInd];
+				sumInd++;
 
 			}
 
-			j++;
+			lhsInd++;
 
 		}
 
-		while (k < rhs._numElements) {
+		while (rhsInd < rhs._numElements) {
 
-			sum._set[i] = rhs._set[k];
-			i++;
-			k++;
+			sum._set[sumInd] = rhs._set[rhsInd];
+			sumInd++;
+			rhsInd++;
 
 		}
 
@@ -208,6 +208,49 @@ public:
 
 	}
 
+	iset64& operator+=(const iset64& n) {
+		
+		//iset64 sum;
+
+		int numCommonElements = getNumCommonElements(n);
+
+		iset64 temp = *this;
+
+		free();
+
+		_numElements = temp._numElements + n._numElements - numCommonElements;
+
+		allocate(_numElements);
+
+		int rhsInd = 0;
+		int lhsInd = 0;
+		int sumInd = 0;
+
+		while (lhsInd < temp._numElements) {
+
+			if (!n.isPresent(temp._set[lhsInd])) {
+
+				_set[sumInd] = temp._set[lhsInd];
+				sumInd++;
+
+			}
+
+			lhsInd++;
+
+		}
+
+		while (rhsInd < n._numElements) {
+
+			_set[sumInd] = n._set[rhsInd];
+			sumInd++;
+			rhsInd++;
+
+		}
+
+		return *this;
+
+	}
+
 	friend iset64 operator-(const iset64& lhs, int n) {
 
 		cout << "In operator-" << endl;
@@ -242,6 +285,58 @@ public:
 
 	}
 
+	friend iset64 operator-(int n, const iset64& rhs) {
+
+		cout << "In operator-" << endl;
+
+		iset64 temp;
+
+		if (rhs._numElements) {
+
+			if (rhs.isPresent(n)) {
+
+				temp._numElements = rhs._numElements - 1;
+
+				temp.allocate(temp._numElements);
+
+				temp.remove(n, rhs);
+
+				return temp;
+
+			}
+			else {
+
+				cout << "Element not present in set" << endl;
+				return rhs;
+			}
+
+		}
+		else {
+
+			cout << "Cannot remove from empty set" << endl;
+			return rhs;
+		}
+
+	}
+
+	friend iset64 operator-(const iset64& lhs, const iset64 rhs) {
+
+		iset64 diff;
+
+		int commElem = lhs.getNumCommonElements(rhs);
+
+		diff._numElements = lhs._numElements - commElem;
+
+		diff.allocate(diff._numElements);
+
+		diff.remove(rhs);
+
+
+
+
+
+	}
+
 	iset64& operator=(const iset64& rhs) {
 
 		cout << "In operator =" << endl;
@@ -270,6 +365,7 @@ public:
 	int getNumCommonElements(const iset64& lhs) const;
 	void copy(const iset64& lhs);
 	void remove(int n, const iset64& a);
+	void remove(const iset64& a);
 	//void sort();
 
 

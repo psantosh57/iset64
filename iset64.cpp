@@ -72,3 +72,8 @@ void iset64::remove(int n, const iset64& temp) {
 	}
 
 }
+
+void iset64::remove( const iset64& temp) {
+
+
+}

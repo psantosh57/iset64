@@ -21,7 +21,7 @@ All includes here
 /*----------------------------------------------------------------
 test a set
 -----------------------------------------------------------------*/
-
+/*
 void test_basic() {
 	iset64 a;
 	cout << "a = " << a << endl;
@@ -52,12 +52,12 @@ void test_basic() {
 
 }
 
-#if 0
 
 /*----------------------------------------------------------------
 test union
 -----------------------------------------------------------------*/
 void test_union() {
+	/*
 	{
 		cout << "TESTING: iset64 operator+(const iset64& a, const iset64& b)" << endl;
 		iset64 a;
@@ -72,6 +72,7 @@ void test_union() {
 		iset64 c = a + b;
 		cout << "a + b = " << c << endl;
 	}
+
 	{
 		cout << "TESTING:iset64 operator+(const iset64& a, const int b)" << endl;
 		iset64 a;
@@ -86,6 +87,8 @@ void test_union() {
 		a = a + 3;
 		cout << "{1,2} + 3 = " << a << endl;
 	}
+
+	
 	{
 		cout << "TESTING:iset64 operator+(const int b, const iset64& a)" << endl;
 		iset64 a;
@@ -100,7 +103,8 @@ void test_union() {
 		a = 3 + a;
 		cout << " 3 + {1,2}  = " << a << endl;
 	}
-
+	
+	*/
 	{
 		cout << "TESTING:iset64& iset64::operator+=(const iset64& a)" << endl;
 		iset64  b;
@@ -114,6 +118,9 @@ void test_union() {
 		b += a;
 		cout << " {1,2} + {1,3}  = " << b << endl;
 	}
+
+	
+
 	{
 		cout << "iset64& iset64::operator+=(const int b)" << endl;
 		iset64 a;
@@ -123,6 +130,7 @@ void test_union() {
 		a += 3;
 		cout << " {1,2} + 3  = " << a << endl;
 	}
+
 	{
 		//test chaining
 		iset64 a;
@@ -140,12 +148,18 @@ void test_union() {
 		cout << "Set c " << c << endl;
 		cout << "Set d " << d << endl;
 	}
+
 }
+
+
 
 /*----------------------------------------------------------------
 test difference
 -----------------------------------------------------------------*/
 void test_difference() {
+
+	/*
+
 	{
 		cout << "TESTING: iset64 operator-(const iset64& a, const iset64& b)" << endl;
 		iset64 a;
@@ -159,6 +173,7 @@ void test_difference() {
 		cout << "Set b " << a << endl;
 		cout << "a - b = " << c << endl;
 	}
+
 	{
 		cout << "TESTING: iset64 operator-(const iset64& a, const iset64& b)" << endl;
 		iset64 a;
@@ -173,6 +188,8 @@ void test_difference() {
 		cout << "Set b " << b << endl;
 		cout << "a - b = " << c << endl;
 	}
+
+	*/
 
 	{
 		cout << "TESTING: iset64 operator-(const iset64& a, const int b)" << endl;
@@ -193,6 +210,8 @@ void test_difference() {
 		a = 3 - a;
 		cout << "3 - a = " << a << endl;
 	}
+
+	/*
 
 	{
 		cout << "TESTING: iset64& iset64::operator-=(const iset64& a)" << endl;
@@ -217,6 +236,7 @@ void test_difference() {
 		a -= 3;
 		cout << "a -= 3 = " << a << endl;
 	}
+
 	{
 		//test chaining
 		iset64 a;
@@ -234,7 +254,11 @@ void test_difference() {
 		cout << "Set c " << c << endl;
 		cout << "Set d " << d << endl;
 	}
+
+	*/
 }
+
+#if 0
 
 /*----------------------------------------------------------------
 test intersection
@@ -564,10 +588,11 @@ void test_demorgan_laws() {
 test bed
 -----------------------------------------------------------------*/
 void testbed() {
-	test_basic();
-	/*
-	test_union();
+	//test_basic();
+	//test_union();
+	
 	test_difference();
+	/*
 	test_intersection();
 	test_equal_not_equal();
 	test_pre_post_inr_dec();
@@ -589,23 +614,6 @@ int main() {
 	
 	//a.getNumCommonElements(b);
 
-	/*
-
-	iset64 a;
-
-	a = a + 5;
-
-	a = 10 + a;
-	a = a + 20;
-	a = a + 25;
-
-	a += 15;
-
-	a = a - 5;
-	a = a - 15;
-
-	cout << a << endl;
-
 	//iset64 a;
 	//cout << a << endl;
 
@@ -615,16 +623,6 @@ int main() {
 
 	//a += 63;
 
-
-	int x[] = { 1, 3, 6 };
-	
-
-	iset64 a(x, sizeof(x)/sizeof(int));
-
-	cout << a << endl;
-
-	a = a - 6;
-
 	//a = a - 3;
 
 	//a = a - 3;
@@ -633,9 +631,9 @@ int main() {
 
 	//iset64 b = a;
 
-	cout << a << endl;
+	//cout << a << endl;
 	//cout << b << endl;
-	*/
+	
 
 	return 0;
 }
