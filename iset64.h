@@ -329,11 +329,186 @@ public:
 
 		diff.allocate(diff._numElements);
 
-		diff.remove(rhs);
+		diff.remove(lhs, rhs);
+
+		return diff;
+
+	}
+
+	iset64& operator-=(const iset64& a) {
+
+		iset64 temp = *this;
+
+		int commElem = getNumCommonElements(a);
+
+		free();
+
+		_numElements = temp._numElements - commElem;
+
+		allocate(_numElements);
+
+		remove(temp, a);
+
+		return *this;
+	}
+
+	iset64& operator-=(const int n) {		
+
+		if (isPresent(n)) {
+
+			iset64 temp = *this;
+
+			free();
+
+			_numElements = temp._numElements - 1;
+
+			allocate(_numElements);
+
+			remove(n, temp);
+
+		}
+
+		return *this;
+		
+	}
+
+	friend iset64 operator*(const iset64& a, const iset64& b) {
+
+		iset64 intersect;
+
+		intersect._numElements = a.getNumCommonElements(b);
+
+		if (intersect._numElements) {
+
+			intersect.allocate(intersect._numElements);
+
+			intersect.copyCommon(a, b);
+
+		}
+		else {
+
+			intersect._numElements = 0;
+		}
+
+		return intersect;		
+
+	}
+
+	friend iset64 operator*(const iset64& a, const int n) {
+
+		iset64 intersect;
+
+		if (a.isPresent(n)) {
+
+			intersect._numElements = 1;
+
+			intersect.allocate(intersect._numElements);
+
+			intersect._set[0] = n;
+
+		}
+		else {
+
+			intersect._numElements = 0;
+
+		}
+
+		return intersect;
+		
+	}
+
+	friend iset64 operator*(const int n, const iset64& a) {
+
+		iset64 intersect;
+
+		if (a.isPresent(n)) {
+
+			intersect._numElements = 1;
+
+			intersect.allocate(intersect._numElements);
+
+			intersect._set[0] = n;
+
+		}
+		else {
+
+			intersect._numElements = 0;
+
+		}
+
+		return intersect;
+
+	}
+
+	iset64& operator*=(const iset64& a) {
+
+		int commElem = getNumCommonElements(a);
+
+		iset64 temp = *this;
+
+		free();
+
+		if (commElem) {
+
+			_numElements = commElem;
+
+			allocate(_numElements);
+
+			copyCommon(temp, a);
+
+		}
+		else {
+
+			_numElements = 0;
+			allocate(_numElements);
 
 
+		}
+		
 
+		return *this;
 
+	}
+
+	iset64& operator*=(const int n) {
+
+		//int commElem = getNumCommonElements(a);
+
+		iset64 temp = *this;
+
+		free();
+
+		if (temp.isPresent(n)) {
+
+			_numElements = 1;
+
+			allocate(_numElements);
+
+			_set[0] = n;
+
+		}
+		else {
+
+			_numElements = 0;
+			allocate(_numElements);
+			
+		}
+
+		return *this;
+
+	}
+
+	friend bool operator==(const iset64& a, const iset64& b) {
+
+		if (a._numElements == b._numElements) {
+
+			return a.compare(b);
+
+		}
+		else {
+
+			return false;
+		}
 
 	}
 
@@ -364,8 +539,11 @@ public:
 	bool isPresent(int n) const;
 	int getNumCommonElements(const iset64& lhs) const;
 	void copy(const iset64& lhs);
+	void copyCommon(const iset64& lhs, const iset64& rhs);
+	void copyCommon(const iset64& lhs, const int n);
 	void remove(int n, const iset64& a);
-	void remove(const iset64& a);
+	void remove(const iset64& lhs, const iset64& rhs);
+	bool compare(const iset64& rhs) const;
 	//void sort();
 
 

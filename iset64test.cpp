@@ -165,12 +165,13 @@ void test_difference() {
 		iset64 a;
 		a += 1;
 		a += 2;
+		a += 3;
 		iset64 b;
 		b += 1;
-		b += 2;
+		//b += 2;
 		iset64 c = a - b;
 		cout << "Set a " << a << endl;
-		cout << "Set b " << a << endl;
+		cout << "Set b " << b << endl;
 		cout << "a - b = " << c << endl;
 	}
 
@@ -188,8 +189,6 @@ void test_difference() {
 		cout << "Set b " << b << endl;
 		cout << "a - b = " << c << endl;
 	}
-
-	*/
 
 	{
 		cout << "TESTING: iset64 operator-(const iset64& a, const int b)" << endl;
@@ -211,7 +210,6 @@ void test_difference() {
 		cout << "3 - a = " << a << endl;
 	}
 
-	/*
 
 	{
 		cout << "TESTING: iset64& iset64::operator-=(const iset64& a)" << endl;
@@ -236,6 +234,7 @@ void test_difference() {
 		a -= 3;
 		cout << "a -= 3 = " << a << endl;
 	}
+	*/
 
 	{
 		//test chaining
@@ -255,15 +254,15 @@ void test_difference() {
 		cout << "Set d " << d << endl;
 	}
 
-	*/
 }
 
-#if 0
+
 
 /*----------------------------------------------------------------
 test intersection
 -----------------------------------------------------------------*/
 void test_intersection() {
+	/*
 	{
 		cout << "TESTING: iset64 operator*(const iset64& a, const iset64& b)" << endl;
 		iset64 a;
@@ -278,6 +277,7 @@ void test_intersection() {
 		iset64 c = a * b;
 		cout << "a * b = " << c << endl;
 	}
+	
 	{
 		cout << "TESTING:iset64 operator*(const iset64& a, const int b)" << endl;
 		iset64 a;
@@ -292,6 +292,7 @@ void test_intersection() {
 		a = a * 3;
 		cout << "{1,2} * 3 = " << a << endl;
 	}
+	
 	{
 		cout << "TESTING:iset64 operator*(const int b, const iset64& a)" << endl;
 		iset64 a;
@@ -306,20 +307,21 @@ void test_intersection() {
 		a = 3 * a;
 		cout << " 3 * {1,2}  = " << a << endl;
 	}
-
+	
 	{
 		cout << "TESTING:iset64& iset64::operator*=(const iset64& a)" << endl;
 		iset64 b;
 		b += 1;
 		b += 2;
 		iset64 a;
-		a += 1;
+		a += 4;
 		a += 3;
 		cout << "Set b " << b << endl;
 		cout << "Set a " << a << endl;
 		b *= a;
-		cout << " {1,2} * {1,3}  = " << b << endl;
+		cout << " {1,2} * {4,3}  = " << b << endl;
 	}
+	
 	{
 		cout << "iset64& iset64::operator*=(const int b)" << endl;
 		iset64 a;
@@ -329,6 +331,7 @@ void test_intersection() {
 		a *= 3;
 		cout << " {1,2} * 3  = " << a << endl;
 	}
+	*/
 	{
 		//test chaining
 		iset64 a;
@@ -346,7 +349,10 @@ void test_intersection() {
 		cout << "Set c " << c << endl;
 		cout << "Set d " << d << endl;
 	}
+	
+
 }
+
 
 
 /*----------------------------------------------------------------
@@ -369,6 +375,7 @@ void test_equal_not_equal() {
 		cout << b;
 		cout << "a == b " << boolalpha << (a == b) << endl;
 	}
+	/*
 	{
 		cout << "TESTING: bool operator!=(const iset64& a, const iset64& b)" << endl;
 		iset64 a;
@@ -385,7 +392,10 @@ void test_equal_not_equal() {
 		cout << "Set b " << b << endl;
 		cout << "a != b " << boolalpha << (a != b) << endl;
 	}
+	*/
 }
+
+#if 0
 
 /*----------------------------------------------------------------
 ++ and --
@@ -591,10 +601,12 @@ void testbed() {
 	//test_basic();
 	//test_union();
 	
-	test_difference();
-	/*
-	test_intersection();
+	//test_difference();
+	
+	//test_intersection();
+	
 	test_equal_not_equal();
+	/*
 	test_pre_post_inr_dec();
 	test_complement();
 	test_conversion_operator();

@@ -54,6 +54,30 @@ void iset64::copy(const iset64& lhs) {
 
 }
 
+void iset64::copyCommon(const iset64& lhs, const iset64& rhs) {
+
+	int resInd = 0;
+
+	for (int i = 0; i < lhs._numElements; ++i) {
+
+		if (rhs.isPresent(lhs._set[i])) {
+
+			this->_set[resInd] = lhs._set[i];
+			resInd++;
+		}
+
+	}
+
+}
+
+void iset64::copyCommon(const iset64& lhs, const int n) {
+
+	int resInd = 0;
+
+	
+
+}
+
 void iset64::remove(int n, const iset64& temp) {
 
 	for (int i = 0, j = 0; i < _numElements, j < temp._numElements;) {
@@ -73,7 +97,35 @@ void iset64::remove(int n, const iset64& temp) {
 
 }
 
-void iset64::remove( const iset64& temp) {
+void iset64::remove(const iset64& lhs, const iset64& rhs) {
 
+	int lhsInd = 0;
+	int resInd = 0;
 
+	while (lhsInd < lhs._numElements) {
+
+		if (!rhs.isPresent(lhs._set[lhsInd])) {
+
+			this->_set[resInd] = lhs._set[lhsInd];
+			resInd++;			
+
+		}
+
+		lhsInd++;
+	}
+
+}
+
+bool iset64::compare(const iset64& rhs) const {
+
+	for (int i = 0; i < _numElements; ++i) {
+
+		if (!rhs.isPresent(_set[i])) {
+
+			return false;
+		} 
+
+	}
+
+	return true;
 }
