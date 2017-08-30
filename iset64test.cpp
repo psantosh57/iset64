@@ -21,7 +21,7 @@ All includes here
 /*----------------------------------------------------------------
 test a set
 -----------------------------------------------------------------*/
-/*
+
 void test_basic() {
 	iset64 a;
 	cout << "a = " << a << endl;
@@ -57,7 +57,7 @@ void test_basic() {
 test union
 -----------------------------------------------------------------*/
 void test_union() {
-	/*
+	
 	{
 		cout << "TESTING: iset64 operator+(const iset64& a, const iset64& b)" << endl;
 		iset64 a;
@@ -104,7 +104,6 @@ void test_union() {
 		cout << " 3 + {1,2}  = " << a << endl;
 	}
 	
-	*/
 	{
 		cout << "TESTING:iset64& iset64::operator+=(const iset64& a)" << endl;
 		iset64  b;
@@ -158,8 +157,6 @@ test difference
 -----------------------------------------------------------------*/
 void test_difference() {
 
-	/*
-
 	{
 		cout << "TESTING: iset64 operator-(const iset64& a, const iset64& b)" << endl;
 		iset64 a;
@@ -168,7 +165,7 @@ void test_difference() {
 		a += 3;
 		iset64 b;
 		b += 1;
-		//b += 2;
+		b += 2;
 		iset64 c = a - b;
 		cout << "Set a " << a << endl;
 		cout << "Set b " << b << endl;
@@ -234,7 +231,6 @@ void test_difference() {
 		a -= 3;
 		cout << "a -= 3 = " << a << endl;
 	}
-	*/
 
 	{
 		//test chaining
@@ -262,7 +258,6 @@ void test_difference() {
 test intersection
 -----------------------------------------------------------------*/
 void test_intersection() {
-	/*
 	{
 		cout << "TESTING: iset64 operator*(const iset64& a, const iset64& b)" << endl;
 		iset64 a;
@@ -331,7 +326,6 @@ void test_intersection() {
 		a *= 3;
 		cout << " {1,2} * 3  = " << a << endl;
 	}
-	*/
 	{
 		//test chaining
 		iset64 a;
@@ -401,7 +395,6 @@ void test_equal_not_equal() {
 ++ and --
 -----------------------------------------------------------------*/
 void test_pre_post_inr_dec() {
-	/*/
 	{
 		int x[] = { 1, 2, 63 };
 		iset64 a(x, sizeof(x) / sizeof(int));
@@ -428,7 +421,6 @@ void test_pre_post_inr_dec() {
 		iset64 b(y, sizeof(y) / sizeof(int));
 		assert(a == b);
 	}
-	/*
 	{
 		int x[] = { 0,2,63 };
 		iset64 a(x, sizeof(x) / sizeof(int));
@@ -439,7 +431,6 @@ void test_pre_post_inr_dec() {
 		iset64 b(y, sizeof(y) / sizeof(int));
 		assert(a == b);
 	}
-	*/
 	{
 		int x[] = { 0, 2, 63 };
 		iset64 a(x, sizeof(x) / sizeof(int));
@@ -539,8 +530,6 @@ void test_not_operator() {
 	}
 }
 
-#if 0
-
 /*----------------------------------------------------------------
 (a+b)' = a'. b'
 (a.b)' = a' + b'
@@ -602,31 +591,21 @@ void test_demorgan_laws() {
 
 }
 
-#endif // 0
-
 /*----------------------------------------------------------------
 test bed
 -----------------------------------------------------------------*/
 void testbed() {
-	//test_basic();
-	//test_union();
-	
-	//test_difference();
-	
-	//test_intersection();
-	
-	//test_equal_not_equal();
-	
-	//test_pre_post_inr_dec();
-	
-	//test_complement();
-	
-	//test_conversion_operator();
-	
-	test_not_operator();
-	/*
+	test_basic();
+	test_union();	
+	test_difference();	
+	test_intersection();	
+	test_equal_not_equal();	
+	test_pre_post_inr_dec();	
+	test_complement();	
+	test_conversion_operator();	
+	test_not_operator();	
 	test_demorgan_laws();
-	*/
+	
 }
 
 
@@ -636,47 +615,6 @@ main
 -----------------------------------------------------------------*/
 int main() {
 	testbed();
-
-#if 0
-
-	iset64 a;
-
-	if (a) {
-
-		cout << "a exists" << endl;
-	}
-	else {
-
-		cout << "a doesn't exist" << endl;
-	}
-
-	cout << a << endl;
-
-#endif // 0
-
-	
-	//a.getNumCommonElements(b);
-
-	//iset64 a;
-	//cout << a << endl;
-
-	//a = a + 5;
-
-	//a = a + 50;
-
-	//a += 63;
-
-	//a = a - 3;
-
-	//a = a - 3;
-
-	//a = a - 5;
-
-	//iset64 b = a;
-
-	//cout << a << endl;
-	//cout << b << endl;
-	
 
 	return 0;
 }

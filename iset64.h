@@ -12,7 +12,7 @@ public:
 		cout << "In iset64 constructor" << endl;
 	}
 
-	iset64(int arr[], int len) {
+	iset64(const int arr[], int len) {
 
 		cout << "In iset64 [] constructor" << endl;
 
@@ -210,8 +210,6 @@ public:
 
 	iset64& operator+=(const iset64& n) {
 		
-		//iset64 sum;
-
 		int numCommonElements = getNumCommonElements(n);
 
 		iset64 temp = *this;
@@ -472,8 +470,6 @@ public:
 
 	iset64& operator*=(const int n) {
 
-		//int commElem = getNumCommonElements(a);
-
 		iset64 temp = *this;
 
 		free();
@@ -611,10 +607,7 @@ public:
 	void preDec();
 	void copyComp(const iset64& a);
 	//void sort();
-
-
-
-
+	
 private:
 
 	int* _set;
