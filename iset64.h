@@ -553,6 +553,27 @@ public:
 
 	}
 
+	friend iset64 operator~(const iset64& a) {
+
+		iset64 comp;
+
+		comp._numElements = 64 - a._numElements;
+
+		comp.allocate(comp._numElements);
+
+		comp.copyComp(a);
+
+		return comp;
+
+	}
+
+	bool operator() ()  {
+
+		//if (a._numElements)
+		return _numElements;
+
+	}
+
 	iset64& operator=(const iset64& rhs) {
 
 		cout << "In operator =" << endl;
@@ -587,7 +608,7 @@ public:
 	bool compare(const iset64& rhs) const;
 	void preInc();
 	void preDec();
-	void postInc();
+	void copyComp(const iset64& a);
 	//void sort();
 
 

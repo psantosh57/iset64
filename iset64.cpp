@@ -141,12 +141,6 @@ void iset64::preInc() {
 
 }
 
-void iset64::postInc() {
-
-
-
-}
-
 void iset64::preDec() {
 
 	for (int i = 0; i < _numElements; ++i) {
@@ -161,6 +155,19 @@ void iset64::preDec() {
 
 		}		
 
+	}
+
+}
+
+void iset64::copyComp(const iset64& a) {
+
+	for (int i = 0, j = 0; i < 64, j < _numElements; ++i) {
+
+		if (!a.isPresent(i)) {
+
+			_set[j] = i;
+			j++;
+		}
 	}
 
 }

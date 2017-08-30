@@ -457,7 +457,7 @@ void test_pre_post_inr_dec() {
 	
 }
 
-#if 0
+
 
 /*----------------------------------------------------------------
 ~
@@ -512,6 +512,8 @@ void test_conversion_operator() {
 		cout << "b does not exists\n";
 	}
 }
+
+#if 0
 
 /*----------------------------------------------------------------
 a = {0,2,63}
@@ -615,10 +617,12 @@ void testbed() {
 	
 	//test_equal_not_equal();
 	
-	test_pre_post_inr_dec();
-	/*
-	test_complement();
+	//test_pre_post_inr_dec();
+	
+	//test_complement();
+	
 	test_conversion_operator();
+	/*
 	test_not_operator();
 	test_demorgan_laws();
 	*/
