@@ -567,10 +567,11 @@ public:
 
 	}
 
-	bool operator() ()  {
+	operator bool() {
 
-		//if (a._numElements)
-		return _numElements;
+		cout << "In operator bool()" << endl;
+
+		return _numElements;	
 
 	}
 
@@ -591,9 +592,9 @@ public:
 				_set[i] = rhs._set[i];
 			}
 
-			return *this;
-
 		}
+
+		return *this;
 		
 
 	}

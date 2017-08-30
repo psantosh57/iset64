@@ -513,8 +513,6 @@ void test_conversion_operator() {
 	}
 }
 
-#if 0
-
 /*----------------------------------------------------------------
 a = {0,2,63}
 if (!a) {
@@ -540,6 +538,8 @@ void test_not_operator() {
 		cout << "b exists\n";
 	}
 }
+
+#if 0
 
 /*----------------------------------------------------------------
 (a+b)' = a'. b'
@@ -621,9 +621,10 @@ void testbed() {
 	
 	//test_complement();
 	
-	test_conversion_operator();
-	/*
+	//test_conversion_operator();
+	
 	test_not_operator();
+	/*
 	test_demorgan_laws();
 	*/
 }
@@ -635,7 +636,24 @@ main
 -----------------------------------------------------------------*/
 int main() {
 	testbed();
-	
+
+#if 0
+
+	iset64 a;
+
+	if (a) {
+
+		cout << "a exists" << endl;
+	}
+	else {
+
+		cout << "a doesn't exist" << endl;
+	}
+
+	cout << a << endl;
+
+#endif // 0
+
 	
 	//a.getNumCommonElements(b);
 
