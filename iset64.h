@@ -512,6 +512,47 @@ public:
 
 	}
 
+	friend bool operator!=(const iset64& a, const iset64& b) {
+
+		return !(a == b);
+
+	}
+
+	iset64& operator++() {
+
+		preInc();
+
+		return *this;
+
+	}
+
+	iset64 operator++(int junk) {
+
+		iset64 temp = *this;
+
+		preInc();
+
+		return temp;
+	}
+
+	iset64& operator--() {
+
+		preDec();
+
+		return *this;
+
+	}
+
+	iset64 operator--(int junk) {
+
+		iset64 temp = *this;
+
+		preDec();
+
+		return temp;
+
+	}
+
 	iset64& operator=(const iset64& rhs) {
 
 		cout << "In operator =" << endl;
@@ -544,6 +585,9 @@ public:
 	void remove(int n, const iset64& a);
 	void remove(const iset64& lhs, const iset64& rhs);
 	bool compare(const iset64& rhs) const;
+	void preInc();
+	void preDec();
+	void postInc();
 	//void sort();
 
 

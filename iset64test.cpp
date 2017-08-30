@@ -375,7 +375,7 @@ void test_equal_not_equal() {
 		cout << b;
 		cout << "a == b " << boolalpha << (a == b) << endl;
 	}
-	/*
+	
 	{
 		cout << "TESTING: bool operator!=(const iset64& a, const iset64& b)" << endl;
 		iset64 a;
@@ -392,15 +392,16 @@ void test_equal_not_equal() {
 		cout << "Set b " << b << endl;
 		cout << "a != b " << boolalpha << (a != b) << endl;
 	}
-	*/
+	
 }
 
-#if 0
+
 
 /*----------------------------------------------------------------
 ++ and --
 -----------------------------------------------------------------*/
 void test_pre_post_inr_dec() {
+	/*/
 	{
 		int x[] = { 1, 2, 63 };
 		iset64 a(x, sizeof(x) / sizeof(int));
@@ -409,8 +410,10 @@ void test_pre_post_inr_dec() {
 		cout << "++a = " << a << endl;
 		int y[] = { 2, 3, 0 };
 		iset64 b(y, sizeof(y) / sizeof(int));
+		cout << b << endl;
 		assert(a == b);
 	}
+	
 	{
 		int x[] = { 1, 2, 63 };
 		iset64 a(x, sizeof(x) / sizeof(int));
@@ -425,6 +428,7 @@ void test_pre_post_inr_dec() {
 		iset64 b(y, sizeof(y) / sizeof(int));
 		assert(a == b);
 	}
+	/*
 	{
 		int x[] = { 0,2,63 };
 		iset64 a(x, sizeof(x) / sizeof(int));
@@ -435,6 +439,7 @@ void test_pre_post_inr_dec() {
 		iset64 b(y, sizeof(y) / sizeof(int));
 		assert(a == b);
 	}
+	*/
 	{
 		int x[] = { 0, 2, 63 };
 		iset64 a(x, sizeof(x) / sizeof(int));
@@ -449,7 +454,10 @@ void test_pre_post_inr_dec() {
 		iset64 b(y, sizeof(y) / sizeof(int));
 		assert(a == b);
 	}
+	
 }
+
+#if 0
 
 /*----------------------------------------------------------------
 ~
@@ -605,9 +613,10 @@ void testbed() {
 	
 	//test_intersection();
 	
-	test_equal_not_equal();
-	/*
+	//test_equal_not_equal();
+	
 	test_pre_post_inr_dec();
+	/*
 	test_complement();
 	test_conversion_operator();
 	test_not_operator();

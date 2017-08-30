@@ -129,3 +129,38 @@ bool iset64::compare(const iset64& rhs) const {
 
 	return true;
 }
+
+void iset64::preInc() {
+
+	for (int i = 0; i < _numElements; ++i) {
+
+		++_set[i];
+		_set[i] %= 64;
+		
+	}
+
+}
+
+void iset64::postInc() {
+
+
+
+}
+
+void iset64::preDec() {
+
+	for (int i = 0; i < _numElements; ++i) {
+
+		if (_set[i] == 0) {
+
+			_set[i] = 63;
+		}
+		else {
+
+			--_set[i];
+
+		}		
+
+	}
+
+}
