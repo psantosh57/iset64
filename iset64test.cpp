@@ -616,6 +616,11 @@ main
 int main() {
 	testbed();
 
+	//int x[] = { 3, 2, 4, 1, 5, 10, 9, 8, 7, 6 };
+	//iset64 a(x, 10);
+
+	//cout << a << endl;
+
 	return 0;
 }
 

@@ -171,3 +171,21 @@ void iset64::copyComp(const iset64& a) {
 	}
 
 }
+
+void iset64::sort() const {
+
+	for (int i = 0; i < _numElements; ++i) {
+
+		for (int j = 1; j < _numElements; ++j) {
+
+			if (_set[j] < _set[j - 1]) {
+
+				int temp = _set[j];
+				_set[j] = _set[j-1];
+				_set[j - 1] = temp;
+
+			}
+		}
+	}
+
+}

@@ -59,6 +59,8 @@ public:
 
 	friend ostream& operator<<(ostream& o, const iset64& a) {
 
+		a.sort();
+
 		cout << "{ ";
 		for (int i = 0; i < a._numElements; ++i) {
 
@@ -606,7 +608,7 @@ public:
 	void preInc();
 	void preDec();
 	void copyComp(const iset64& a);
-	//void sort();
+	void sort() const;
 	
 private:
 
